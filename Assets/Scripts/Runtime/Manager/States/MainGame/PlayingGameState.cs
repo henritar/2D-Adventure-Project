@@ -68,6 +68,7 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
 
         void OnEnable()
         {
+            _playerCharacterInputManager.ToggleInputManager(true);
             _playerCharacterInputManager.MoveInputAction += ChangeToFromMoveState;
             _playerCharacterInputManager.InteractPressedAction += ChangeToFromInteractState;
             _playerCharacterInputManager.AttackPressedAction += ChangeToFromAttackState;
@@ -80,6 +81,7 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
             _playerCharacterInputManager.InteractPressedAction -= ChangeToFromInteractState;
             _playerCharacterInputManager.AttackPressedAction -= ChangeToFromAttackState;
             _playerCharacterInputManager.InventoryPressedAction -= ChangeToInventoryState;
+            _playerCharacterInputManager.ToggleInputManager(false);
         }
 
         void ChangeToFromMoveState(bool isMoving)

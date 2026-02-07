@@ -69,5 +69,13 @@ namespace Assets.Scripts.Runtime.Manager
 
             InventoryPressedAction(isPressed);
         }
+
+        public void ToggleInputManager(bool isEnabled)
+        {
+            if (isEnabled)
+                input.Player.Enable();
+            else
+                input.Player.Disable();
+        }
     }
 }
