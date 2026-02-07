@@ -19,13 +19,19 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
 
             List<IBaseState<CharacterStateEnum>> characterStates = new List<IBaseState<CharacterStateEnum>>();
             NoneCharacterState noneState = new NoneCharacterState();
-            ActionCharacterState actionState = new ActionCharacterState(_playerCharacterInputManager, characterController);
+            AttackCharacterState attackState = new AttackCharacterState(characterController);
+            InteractCharacterState interactState = new InteractCharacterState(characterController);
+            MoveCharacterState moveState = new MoveCharacterState(_playerCharacterInputManager, characterController);
 
-            characterStates.Add(actionState);
+            characterStates.Add(moveState);
             characterStates.Add(noneState);
+            characterStates.Add(interactState);
+            characterStates.Add(attackState);
 
             _characterStatesManager = new CharacterStatesManager(characterStates);
-            actionState.SetStateManager(_characterStatesManager);
+            moveState.SetStateManager(_characterStatesManager);
+            attackState.SetStateManager(_characterStatesManager);
+            interactState.SetStateManager(_characterStatesManager);
             noneState.SetStateManager(_characterStatesManager);
         }
 
@@ -74,17 +80,17 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
 
         void ChangeToFromMoveState(bool isMoving)
         {
-            _characterStatesManager.ChangeState(isMoving ? CharacterStateEnum.Action : CharacterStateEnum.None);
+            _characterStatesManager.ChangeState(isMoving ? CharacterStateEnum.Move : CharacterStateEnum.None);
         }
 
         void ChangeToFromInteractState(bool isInteracting)
         {
-            _characterStatesManager.ChangeState(isInteracting ? CharacterStateEnum.Action : CharacterStateEnum.None);
+            _characterStatesManager.ChangeState(isInteracting ? CharacterStateEnum.Interact : CharacterStateEnum.None);
         }
 
         void ChangeToFromAttackState(bool isAttacking)
         {
-            _characterStatesManager.ChangeState(isAttacking ? CharacterStateEnum.Action : CharacterStateEnum.None);
+            _characterStatesManager.ChangeState(isAttacking ? CharacterStateEnum.Attack : CharacterStateEnum.None);
         }
     }
 }

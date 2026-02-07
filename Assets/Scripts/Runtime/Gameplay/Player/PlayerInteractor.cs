@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Player
 {
+    [RequireComponent(typeof(Collider2D))]
     public class PlayerInteractor : MonoBehaviour
     {
         private IInteractable current;

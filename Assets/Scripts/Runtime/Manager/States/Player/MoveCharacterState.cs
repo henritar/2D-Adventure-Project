@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Manager.States.Player
 {
-    internal class ActionCharacterState : BaseState<CharacterStateEnum>
+    internal class MoveCharacterState : BaseState<CharacterStateEnum>
     {
-        protected override CharacterStateEnum CurrentState => CharacterStateEnum.Action;
+        protected override CharacterStateEnum CurrentState => CharacterStateEnum.Move;
 
         private PlayerCharacterInputManager _inputManager;
         private PlayerCharacterController _characterController;
 
-        public ActionCharacterState(PlayerCharacterInputManager inputManager, PlayerCharacterController characterController)
+        public MoveCharacterState(PlayerCharacterInputManager inputManager, PlayerCharacterController characterController)
         {
             _inputManager = inputManager;
             _characterController = characterController;
@@ -20,13 +20,13 @@ namespace Assets.Scripts.Runtime.Manager.States.Player
 
         protected override void OnEnterState()
         {
-            Debug.Log("Entering Action Character State");
+            Debug.Log("Entering Move Character State");
         }
 
         protected override void OnExitState()
         {
             _characterController.OnMove(Vector2.zero);
-            Debug.Log("Exiting Action Character State");
+            Debug.Log("Exiting Move Character State");
         }
 
         protected override void OnUpdate()

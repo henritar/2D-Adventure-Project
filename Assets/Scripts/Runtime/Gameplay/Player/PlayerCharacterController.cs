@@ -1,32 +1,26 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Player
 {
+    [RequireComponent(typeof(PlayerInteractor))]
     public class PlayerCharacterController : MonoBehaviour
     {
         private Animator _animator;
+        private PlayerInteractor _interactor;
 
         private bool facingRight = false;
         private Vector2 _movementInput;
+        private bool _isAttacking = false;
 
         private void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
+            _interactor = GetComponent<PlayerInteractor>();
         }
 
         private void Update()
         {
-            if (_movementInput.x > 0 && !facingRight)
-            {
-                Flip(true);
-            }
-            else if (_movementInput.x < 0 && facingRight)
-            {
-                Flip(false);
-            }
-
-            _animator.SetBool("1_Move", _movementInput.magnitude > 0f);
             transform.Translate(new Vector3(_movementInput.x, _movementInput.y, 0) * Time.deltaTime * 5f);
         }
 
@@ -42,6 +36,42 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
         public void OnMove(Vector2 moveDirection)
         {
             _movementInput = moveDirection;
+
+            if (_movementInput.x > 0 && !facingRight)
+            {
+                Flip(true);
+            }
+            else if (_movementInput.x < 0 && facingRight)
+            {
+                Flip(false);
+            }
+
+            _animator.SetBool("1_Move", _movementInput.magnitude > 0f);
+        }
+
+        public void OnAttack()
+        {
+            if (_isAttacking) return;
+
+            _animator.SetTrigger("2_Attack");
+        }
+
+        public void OnInteract()
+        {
+            if (_interactor.CanInteract)
+            {
+                _interactor.Interact(this);
+            }
+        }
+
+        public void OnAttackStart()
+        {
+            _isAttacking = true;
+        }
+
+        public void OnAttackEnd()
+        {
+            _isAttacking = false;
         }
     }
 }

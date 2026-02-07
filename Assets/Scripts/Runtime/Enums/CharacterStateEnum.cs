@@ -3,7 +3,8 @@
     public enum CharacterStateEnum
     {
         None,
-        Action,
-        Interacting,
+        Move,
+        Attack,
+        Interact,
     }
 }
