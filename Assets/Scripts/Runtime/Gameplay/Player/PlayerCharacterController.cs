@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Player
 {
-    [RequireComponent(typeof(PlayerInteractor))]
+    [RequireComponent(typeof(PlayerInteractor), typeof(PlayerInventory))]
     public class PlayerCharacterController : MonoBehaviour
     {
         public bool IsAttacking => _isAttacking;
@@ -11,6 +12,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
 
         private Animator _animator;
         private PlayerInteractor _interactor;
+        private PlayerInventory _inventory;
 
         private bool facingRight = false;
         private Vector2 _movementInput;
@@ -20,6 +22,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
         {
             _animator = GetComponentInChildren<Animator>();
             _interactor = GetComponent<PlayerInteractor>();
+            _inventory = GetComponent<PlayerInventory>();
         }
 
         private void Update()
@@ -75,6 +78,11 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
         public void OnAttackEnd()
         {
             _isAttacking = false;
+        }
+
+        public void AddItemToInventory(ItemData item, int quantity)
+        {
+            _inventory.Model.AddItem(item, quantity);
         }
     }
 }
