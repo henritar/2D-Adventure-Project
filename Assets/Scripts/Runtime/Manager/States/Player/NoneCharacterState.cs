@@ -2,7 +2,7 @@
 using Assets.Scripts.Runtime.Shared;
 using UnityEngine;
 
-namespace Assets.Scripts.Runtime.Manager.States.Character
+namespace Assets.Scripts.Runtime.Manager.States.Player
 {
     public class NoneCharacterState : BaseState<CharacterStateEnum>
     {

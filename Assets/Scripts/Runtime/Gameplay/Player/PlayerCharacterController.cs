@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Runtime.Gameplay.Character
+namespace Assets.Scripts.Runtime.Gameplay.Player
 {
     public class PlayerCharacterController : MonoBehaviour
     {
@@ -39,9 +39,9 @@ namespace Assets.Scripts.Runtime.Gameplay.Character
             transform.localScale = scale;
         }
 
-        public void OnMove(InputAction.CallbackContext ctx)
+        public void OnMove(Vector2 moveDirection)
         {
-            _movementInput = ctx.ReadValue<Vector2>();
+            _movementInput = moveDirection;
         }
     }
 }
