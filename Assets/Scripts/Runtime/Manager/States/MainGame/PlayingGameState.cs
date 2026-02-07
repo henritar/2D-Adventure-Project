@@ -1,58 +1,55 @@
 ﻿using Assets.Scripts.Runtime.Enums;
+using Assets.Scripts.Runtime.Manager.States.Character;
 using Assets.Scripts.Runtime.Shared;
+using Assets.Scripts.Runtime.Shared.Interfaces.StateMachine;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Runtime.Manager.States.MainGame
 {
-    public class PlayingGameState : BaseGameState
+    public class PlayingGameState : BaseState<GameStatesEnum>
     {
-        public Transform playerTransform;
-        public InputSystem_Actions inputActions = new InputSystem_Actions();
-        
-        private Vector2 movementInput;
+        private CharacterStatesManager _characterStatesManager;
 
-        protected override GameStatesEnum GameState => GameStatesEnum.Playing;
+        public PlayingGameState(Transform CharacterTransform)
+        {
+            List<IBaseState<CharacterStateEnum>> characterStates = new List<IBaseState<CharacterStateEnum>>();
+            NoneCharacterState noneState = new NoneCharacterState();
+            ActionCharacterState actionState = new ActionCharacterState();
+
+            actionState.CharacterTransform = CharacterTransform;
+            characterStates.Add(actionState);
+            characterStates.Add(noneState);
+
+            _characterStatesManager = new CharacterStatesManager(characterStates);
+            actionState.SetStateManager(_characterStatesManager);
+            noneState.SetStateManager(_characterStatesManager);
+        }
+
+        protected override GameStatesEnum CurrentState => GameStatesEnum.Playing;
 
         protected override void OnEnterState()
         {
             Debug.Log("Entering Playing Game State");
-
-            OnEnable();
+            _characterStatesManager.ChangeState(CharacterStateEnum.Action);
+            
         }
 
         protected override void OnExitState()
         {
-            OnDisable();
+            _characterStatesManager.ChangeState(CharacterStateEnum.None);
             Debug.Log("Exiting Playing Game State");
         }
 
         protected override void OnUpdate()
         {
-            playerTransform.Translate(new Vector3(movementInput.x, movementInput.y, 0) * Time.deltaTime * 5f);
+            _characterStatesManager.Update();
         }
 
         protected override void OnFixedUpdate()
         {
-        }
-
-        void OnEnable()
-        {
-            inputActions.Player.Enable();
-            inputActions.Player.Move.performed += OnMove;
-            inputActions.Player.Move.canceled += OnMove;
-        }
-
-        void OnDisable()
-        {
-            inputActions.Player.Disable();
-            inputActions.Player.Move.performed -= OnMove;
-            inputActions.Player.Move.canceled -= OnMove;
-        }
-
-        void OnMove(InputAction.CallbackContext ctx)
-        {
-            movementInput = ctx.ReadValue<Vector2>();
+            _characterStatesManager.FixedUpdate();
         }
     }
 }

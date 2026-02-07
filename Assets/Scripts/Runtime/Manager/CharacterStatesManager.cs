@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Runtime.Manager
 {
-    public class GameStatesManager : BaseStatesManager<GameStatesEnum>
+    public class CharacterStatesManager : BaseStatesManager<CharacterStateEnum>
     {
-        public GameStatesManager(IEnumerable<IBaseState<GameStatesEnum>> gameStates) : base(gameStates)
+        public CharacterStatesManager(IEnumerable<IBaseState<CharacterStateEnum>> gameStates) : base(gameStates)
         {
         }
     }

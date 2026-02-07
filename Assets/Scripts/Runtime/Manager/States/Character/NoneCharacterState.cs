@@ -2,20 +2,20 @@
 using Assets.Scripts.Runtime.Shared;
 using UnityEngine;
 
-namespace Assets.Scripts.Runtime.Manager.States.MainGame
+namespace Assets.Scripts.Runtime.Manager.States.Character
 {
-    public class NoneGameState : BaseState<GameStatesEnum>
+    public class NoneCharacterState : BaseState<CharacterStateEnum>
     {
-        protected override GameStatesEnum CurrentState => GameStatesEnum.None;
+        protected override CharacterStateEnum CurrentState => CharacterStateEnum.None;
 
         protected override void OnEnterState()
         {
-            Debug.Log("Entering None Game State");
+            Debug.Log("Entering None Character State");
         }
 
         protected override void OnExitState()
         {
-            Debug.Log("Exiting None Game State");
+            Debug.Log("Exiting None Character State");
         }
 
         protected override void OnUpdate()

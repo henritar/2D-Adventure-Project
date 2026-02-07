@@ -53,12 +53,12 @@ namespace Assets.Scripts.Runtime.Shared
             stateHandler.EnterState();
         }
 
-        public void Update()
+        public virtual void Update()
         {
             stateHandler?.Update();
         }
 
-        public void FixedUpdate()
+        public virtual void FixedUpdate()
         {
             stateHandler?.FixedUpdate();
         }

@@ -1,15 +1,14 @@
-﻿using Assets.Scripts.Runtime.Enums;
-using Assets.Scripts.Runtime.Shared.Interfaces.StateMachine;
+﻿using Assets.Scripts.Runtime.Shared.Interfaces.StateMachine;
 using System;
 
 namespace Assets.Scripts.Runtime.Shared
 {
-    public abstract class BaseGameState : IGameState, IDisposable
+    public abstract class BaseState<TState> : IBaseState<TState>, IDisposable where TState : Enum
     {
-        protected IStatesManager<GameStatesEnum> _stateManager;
-        public GameStatesEnum State => GameState;
+        protected IStatesManager<TState> _stateManager;
+        public TState State => CurrentState;
 
-        public void SetStateManager(IStatesManager<GameStatesEnum> stateManager)
+        public void SetStateManager(IStatesManager<TState> stateManager)
         {
             _stateManager = stateManager;
         }
@@ -38,7 +37,7 @@ namespace Assets.Scripts.Runtime.Shared
             _stateManager = null;
         }
 
-        protected abstract GameStatesEnum GameState { get; }
+        protected abstract TState CurrentState { get; }
         protected abstract void OnEnterState();
         protected abstract void OnExitState();
         protected abstract void OnFixedUpdate();
