@@ -19,6 +19,7 @@ namespace Assets.Scripts.Runtime.Manager.States.Player
         protected override void OnEnterState()
         {
             Debug.Log("Entering Interact Character State");
+            _characterController.OnInteract();
         }
 
         protected override void OnExitState()

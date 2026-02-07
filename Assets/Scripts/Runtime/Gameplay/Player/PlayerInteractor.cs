@@ -11,6 +11,11 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
         void OnTriggerEnter2D(Collider2D other)
         {
             current = other.GetComponent<IInteractable>();
+
+            if (current != null)
+            {
+                Debug.Log($"Player can interact with {other.gameObject.name}");
+            }
         }
 
         void OnTriggerExit2D(Collider2D other)
