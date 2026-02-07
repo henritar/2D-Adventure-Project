@@ -10,12 +10,12 @@ namespace Assets.Scripts.Runtime.Manager.States.Player
 
         protected override void OnEnterState()
         {
-            Debug.Log("Entering None Character State");
+            //Debug.Log("Entering None Character State");
         }
 
         protected override void OnExitState()
         {
-            Debug.Log("Exiting None Character State");
+            //Debug.Log("Exiting None Character State");
         }
 
         protected override void OnUpdate()

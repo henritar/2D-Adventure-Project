@@ -18,13 +18,13 @@ namespace Assets.Scripts.Runtime.Manager.States.Player
 
         protected override void OnEnterState()
         {
-            Debug.Log("Entering Interact Character State");
+            //Debug.Log("Entering Interact Character State");
             _characterController.OnInteract();
         }
 
         protected override void OnExitState()
         {
-            Debug.Log("Exiting Interact Character State");
+            //Debug.Log("Exiting Interact Character State");
         }
 
         protected override void OnUpdate()

@@ -12,10 +12,12 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
     {
         private PlayerCharacterInputManager _playerCharacterInputManager;
         private CharacterStatesManager _characterStatesManager;
+        private PlayerCharacterController _characterController;
 
         public PlayingGameState(PlayerCharacterInputManager playerCharacterInputManager, PlayerCharacterController characterController)
         {
             _playerCharacterInputManager = playerCharacterInputManager;
+            _characterController = characterController;
 
             List<IBaseState<CharacterStateEnum>> characterStates = new List<IBaseState<CharacterStateEnum>>();
             NoneCharacterState noneState = new NoneCharacterState();
@@ -80,6 +82,9 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
 
         void ChangeToFromMoveState(bool isMoving)
         {
+            if (_characterController.IsInteracting)
+                return;
+
             _characterStatesManager.ChangeState(isMoving ? CharacterStateEnum.Move : CharacterStateEnum.None);
         }
 

@@ -6,6 +6,9 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
     [RequireComponent(typeof(PlayerInteractor))]
     public class PlayerCharacterController : MonoBehaviour
     {
+        public bool IsAttacking => _isAttacking;
+        public bool IsInteracting => _interactor.Current != null && _interactor.Current.IsBusy;
+
         private Animator _animator;
         private PlayerInteractor _interactor;
 

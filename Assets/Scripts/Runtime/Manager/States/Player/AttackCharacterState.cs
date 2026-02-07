@@ -18,12 +18,12 @@ namespace Assets.Scripts.Runtime.Manager.States.Player
 
         protected override void OnEnterState()
         {
-            Debug.Log("Entering Attack Character State");
+            //Debug.Log("Entering Attack Character State");
         }
 
         protected override void OnExitState()
         {
-            Debug.Log("Exiting Attack Character State");
+            //Debug.Log("Exiting Attack Character State");
         }
 
         protected override void OnUpdate()

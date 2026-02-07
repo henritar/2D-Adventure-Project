@@ -6,13 +6,13 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
     [RequireComponent(typeof(Collider2D))]
     public class PlayerInteractor : MonoBehaviour
     {
-        private IInteractable current;
+        public IInteractable Current { get; private set; }
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            current = other.GetComponent<IInteractable>();
+            Current = other.GetComponent<IInteractable>();
 
-            if (current != null)
+            if (Current != null)
             {
                 Debug.Log($"Player can interact with {other.gameObject.name}");
             }
@@ -20,15 +20,15 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
 
         void OnTriggerExit2D(Collider2D other)
         {
-            if (other.GetComponent<IInteractable>() == current)
-                current = null;
+            if (other.GetComponent<IInteractable>() == Current)
+                Current = null;
         }
 
-        public bool CanInteract => current != null && !current.IsBusy;
+        public bool CanInteract => Current != null && !Current.IsBusy;
 
         public void Interact(PlayerCharacterController player)
         {
-            current?.Interact(player);
+            Current?.Interact(player);
         }
     }
 

@@ -20,13 +20,13 @@ namespace Assets.Scripts.Runtime.Manager.States.Player
 
         protected override void OnEnterState()
         {
-            Debug.Log("Entering Move Character State");
+            //Debug.Log("Entering Move Character State");
         }
 
         protected override void OnExitState()
         {
             _characterController.OnMove(Vector2.zero);
-            Debug.Log("Exiting Move Character State");
+            //Debug.Log("Exiting Move Character State");
         }
 
         protected override void OnUpdate()
