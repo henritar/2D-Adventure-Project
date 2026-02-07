@@ -4,7 +4,6 @@ using Assets.Scripts.Runtime.Shared;
 using Assets.Scripts.Runtime.Shared.Interfaces.StateMachine;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Runtime.Manager.States.MainGame
 {
@@ -12,13 +11,13 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
     {
         private CharacterStatesManager _characterStatesManager;
 
-        public PlayingGameState(Transform CharacterTransform)
+        public PlayingGameState(Gameplay.Character.PlayerCharacterController characterController)
         {
             List<IBaseState<CharacterStateEnum>> characterStates = new List<IBaseState<CharacterStateEnum>>();
             NoneCharacterState noneState = new NoneCharacterState();
             ActionCharacterState actionState = new ActionCharacterState();
 
-            actionState.CharacterTransform = CharacterTransform;
+            actionState.CharacterController = characterController;
             characterStates.Add(actionState);
             characterStates.Add(noneState);
 

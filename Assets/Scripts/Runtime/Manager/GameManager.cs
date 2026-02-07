@@ -9,14 +9,14 @@ namespace Assets.Scripts.Runtime.Manager
     public class GameManager : MonoBehaviour
     {
         [SerializeField]
-        private Transform _characterTransform;
+        private Gameplay.Character.PlayerCharacterController _characterController;
         private GameStatesManager _gameStatesManager;
 
         void Awake()
         {
             List<IBaseState<GameStatesEnum>> gameStates = new List<IBaseState<GameStatesEnum>>();
             NoneGameState noneGameState = new NoneGameState();
-            PlayingGameState playingGameState = new PlayingGameState(_characterTransform);
+            PlayingGameState playingGameState = new PlayingGameState(_characterController);
 
             gameStates.Add(noneGameState);
             gameStates.Add(playingGameState);
