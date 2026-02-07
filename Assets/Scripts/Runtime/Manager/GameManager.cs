@@ -22,7 +22,7 @@ namespace Assets.Scripts.Runtime.Manager
         {
             List<IBaseState<GameStatesEnum>> gameStates = new List<IBaseState<GameStatesEnum>>();
             NoneGameState noneGameState = new NoneGameState();
-            InventoryGameState inventoryGameState = new InventoryGameState(_inventoryView);
+            InventoryGameState inventoryGameState = new InventoryGameState(_characterInputManager, _inventoryView);
             PlayingGameState playingGameState = new PlayingGameState(_characterInputManager, _characterController);
 
             gameStates.Add(noneGameState);

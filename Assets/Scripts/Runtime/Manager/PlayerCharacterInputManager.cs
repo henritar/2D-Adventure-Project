@@ -25,7 +25,6 @@ namespace Assets.Scripts.Runtime.Manager
 
         void OnEnable()
         {
-            input.Player.Enable();
             input.Player.Move.performed += OnMove;
             input.Player.Move.canceled += OnMove;
             input.Player.Interact.performed += OnInteract;
@@ -33,6 +32,8 @@ namespace Assets.Scripts.Runtime.Manager
             input.Player.Attack.performed += OnAttack;
             input.Player.Attack.canceled += OnAttack;
             input.Player.Inventory.performed += OnInventoryCalled;
+
+            input.UI.Cancel.performed += OnInventoryCalled;
         }
 
         void OnDisable()
@@ -70,12 +71,20 @@ namespace Assets.Scripts.Runtime.Manager
             InventoryPressedAction(isPressed);
         }
 
-        public void ToggleInputManager(bool isEnabled)
+        public void TogglePlayerInputManager(bool isEnabled)
         {
             if (isEnabled)
                 input.Player.Enable();
             else
                 input.Player.Disable();
+        }
+
+        public void ToggleUIInputManager(bool isEnabled)
+        {
+            if (isEnabled)
+                input.UI.Enable();
+            else
+                input.UI.Disable();
         }
     }
 }
