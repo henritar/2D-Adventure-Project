@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Runtime.Shared.Interfaces.Inventory;
+using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 {
@@ -34,6 +35,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
         private void OnSlotClicked(int index)
         {
             //model.UseItem(index);
+            Debug.Log($"Clicked slot {index}");
         }
     }
 }

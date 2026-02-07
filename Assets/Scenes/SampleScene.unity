@@ -6211,6 +6211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Runtime.Manager.GameManager
   _characterController: {fileID: 126884353}
   _characterInputManager: {fileID: 609472096}
+  _inventoryView: {fileID: 1533647821}
 --- !u!4 &1712241617
 Transform:
   m_ObjectHideFlags: 0

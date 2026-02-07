@@ -71,6 +71,7 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
             _playerCharacterInputManager.MoveInputAction += ChangeToFromMoveState;
             _playerCharacterInputManager.InteractPressedAction += ChangeToFromInteractState;
             _playerCharacterInputManager.AttackPressedAction += ChangeToFromAttackState;
+            _playerCharacterInputManager.InventoryPressedAction += ChangeToInventoryState;
         }
 
         void OnDisable()
@@ -78,6 +79,7 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
             _playerCharacterInputManager.MoveInputAction -= ChangeToFromMoveState;
             _playerCharacterInputManager.InteractPressedAction -= ChangeToFromInteractState;
             _playerCharacterInputManager.AttackPressedAction -= ChangeToFromAttackState;
+            _playerCharacterInputManager.InventoryPressedAction -= ChangeToInventoryState;
         }
 
         void ChangeToFromMoveState(bool isMoving)
@@ -96,6 +98,14 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
         void ChangeToFromAttackState(bool isAttacking)
         {
             _characterStatesManager.ChangeState(isAttacking ? CharacterStateEnum.Attack : CharacterStateEnum.None);
+        }
+
+        void ChangeToInventoryState(bool isInventoryPressed)
+        {
+            if (isInventoryPressed)
+            {
+                _stateManager.ChangeState(GameStatesEnum.Inventory);
+            }
         }
     }
 }

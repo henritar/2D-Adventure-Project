@@ -9,6 +9,7 @@ namespace Assets.Scripts.Runtime.Manager
         public event Action<bool> MoveInputAction;
         public event Action<bool> AttackPressedAction;
         public event Action<bool> InteractPressedAction;
+        public event Action<bool> InventoryPressedAction;
 
         public Vector2 MoveInput { get; private set; }
         public bool IsAttacking { get; private set; }
@@ -31,6 +32,7 @@ namespace Assets.Scripts.Runtime.Manager
             input.Player.Interact.canceled += OnInteract;
             input.Player.Attack.performed += OnAttack;
             input.Player.Attack.canceled += OnAttack;
+            input.Player.Inventory.performed += OnInventoryCalled;
         }
 
         void OnDisable()
@@ -58,6 +60,14 @@ namespace Assets.Scripts.Runtime.Manager
             IsAttacking = value > 0.5f;
 
             AttackPressedAction(IsAttacking);
+        }
+
+        void OnInventoryCalled(InputAction.CallbackContext ctx)
+        {
+            float value = ctx.ReadValue<float>();
+            bool isPressed = value > 0.5f;
+
+            InventoryPressedAction(isPressed);
         }
     }
 }
