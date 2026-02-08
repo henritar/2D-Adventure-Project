@@ -19,6 +19,8 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
 
         private void Awake()
         {
+            // TODO: Cache the Animator and other components in a more robust way,
+            // especially if the hierarchy changes (SPUM Prefab for instance).
             _animator = GetComponentInChildren<Animator>();
             _interactor = GetComponent<PlayerInteractor>();
             _inventory = GetComponent<PlayerInventory>();
@@ -26,6 +28,8 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
 
         private void Update()
         {
+            //TODO: Consider using a more robust movement system,
+            //especially if we want to add features like dashing or knockback in the future.
             transform.Translate(new Vector3(_movementInput.x, _movementInput.y, 0) * Time.deltaTime * 5f);
         }
 

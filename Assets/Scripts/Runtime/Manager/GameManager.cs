@@ -20,6 +20,8 @@ namespace Assets.Scripts.Runtime.Manager
 
         void Awake()
         {
+            //TODO: This should be done with a dependency injection framework,
+            // but for the sake of simplicity, we will do it manually here.
             List<IBaseState<GameStatesEnum>> gameStates = new List<IBaseState<GameStatesEnum>>();
             NoneGameState noneGameState = new NoneGameState();
             InventoryGameState inventoryGameState = new InventoryGameState(_characterInputManager, _inventoryView);

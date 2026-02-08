@@ -16,6 +16,8 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
 
         public PlayingGameState(PlayerCharacterInputManager playerCharacterInputManager, PlayerCharacterController characterController)
         {
+            //TODO: This should be done with a dependency injection framework (Same as the GameManager),
+            //but for the sake of simplicity, we will do it manually here.
             _playerCharacterInputManager = playerCharacterInputManager;
             _characterController = characterController;
 

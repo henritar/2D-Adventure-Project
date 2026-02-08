@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Runtime.Shared.Interfaces.Inventory;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,13 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 {
     public class InventoryView : MonoBehaviour, IInventoryView
     {
-        public InventorySlotUI slotPrefab;
-        public Transform gridParent;
-        public Image dragIcon;
+        public InventorySlotUI SlotPrefab;
+        public Transform GridParent;
+        public Image DragIcon;
+
+        public TMP_Text ItemName;
+        public TMP_Text ItemDescription;
+        public Button ConfirmButton;
 
         public event Action<int> BeginDrag;
         public event Action<int> EndDrag;
@@ -23,22 +28,26 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 
         public void Build(int slotCount)
         {
-            foreach (Transform child in gridParent)
+            //TODO: Implement object pooling for better performance
+            foreach (Transform child in GridParent)
                 Destroy(child.gameObject);
 
             slots.Clear();
 
             for (int i = 0; i < slotCount; i++)
             {
-                var ui = Instantiate(slotPrefab, gridParent);
+                var ui = Instantiate(SlotPrefab, GridParent);
                 slots.Add(ui);
                 ui.Init(i);
+                //TODO: Consider using a more efficient event system if performance becomes an issue
                 ui.Clicked += (index) => SlotClicked?.Invoke(index);
                 ui.BeginDrag += index => BeginDrag?.Invoke(index);
                 ui.Drag += (index, pointerEvent) => MoveDragIcon(pointerEvent.position);
                 ui.EndDrag += index => EndDrag?.Invoke(index);
                 ui.Drop += index => Drop?.Invoke(index);
             }
+
+            DragIcon.gameObject.SetActive(false);
         }
 
         public void SetSlot(int index, InventorySlot slot)
@@ -53,18 +62,18 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 
         public void ShowDragIcon(Sprite icon)
         {
-            dragIcon.sprite = icon;
-            dragIcon.gameObject.SetActive(true);
+            DragIcon.sprite = icon;
+            DragIcon.gameObject.SetActive(true);
         }
 
         public void MoveDragIcon(Vector2 position)
         {
-            dragIcon.transform.position = position;
+            DragIcon.transform.position = position;
         }
 
         public void HideDragIcon()
         {
-            dragIcon.gameObject.SetActive(false);
+            DragIcon.gameObject.SetActive(false);
         }
 
         public void HighlightSlot(int index)
