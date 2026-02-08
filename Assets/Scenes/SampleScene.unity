@@ -3478,6 +3478,7 @@ Transform:
   - {fileID: 452713717}
   - {fileID: 1503471995}
   - {fileID: 1571349797}
+  - {fileID: 1822157181}
   - {fileID: 1313096376}
   - {fileID: 2036972803}
   m_Father: {fileID: 1457651812}
@@ -6519,7 +6520,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4306118222959202230, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
       propertyPath: TextToDisplay
-      value: I'm a House!
+      value: Press I to open your inventory!
       objectReference: {fileID: 0}
     - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6563,7 +6564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4298572422922371483, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
       propertyPath: m_Name
-      value: HouseTextInteractable
+      value: InventoryTutorialTextInteractable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6622,6 +6623,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1822157180
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 793818446}
+    m_Modifications:
+    - target: {fileID: -4306118222959202230, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: TextToDisplay
+      value: I'm a house!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5156271
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298572422922371483, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+      propertyPath: m_Name
+      value: HouseTextInteractable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+--- !u!4 &1822157181 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2325933651155147317, guid: 449e345c41846854eb967ca1659dbc06, type: 3}
+  m_PrefabInstance: {fileID: 1822157180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2036972802
 PrefabInstance:
   m_ObjectHideFlags: 0
