@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedd6181746199445bfbdfb4cba0718f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Runtime.Gameplay.Player.PlayerInventory
+  itemDatabase: {fileID: 11400000, guid: 9728471576504de4a805b9a9e9b6c174, type: 2}
 --- !u!1001 &173991903
 PrefabInstance:
   m_ObjectHideFlags: 0

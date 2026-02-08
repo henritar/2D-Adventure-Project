@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
+using Assets.Scripts.Runtime.Systems.Save.DTO;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,6 +71,52 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 
             OnChanged?.Invoke();
         }
-    }
 
+        public InventorySaveData GetSaveData()
+        {
+            var data = new InventorySaveData();
+
+            foreach (var slot in _slots)
+            {
+                if (slot.IsEmpty)
+                {
+                    data.slots.Add(new InventorySlotSaveData());
+                }
+                else
+                {
+                    data.slots.Add(new InventorySlotSaveData
+                    {
+                        itemId = slot.item.itemId,
+                        quantity = slot.quantity
+                    });
+                }
+            }
+
+            return data;
+        }
+
+        public void LoadFromSave(InventorySaveData data, ItemDatabase itemDatabase)
+        {
+            _slots.Clear();
+
+            foreach (var slotData in data.slots)
+            {
+                if (string.IsNullOrEmpty(slotData.itemId))
+                {
+                    _slots.Add(new InventorySlot());
+                    continue;
+                }
+
+                ItemData item = itemDatabase.GetById(slotData.itemId);
+
+                _slots.Add(new InventorySlot
+                {
+                    item = item,
+                    quantity = slotData.quantity
+                });
+            }
+
+            OnChanged?.Invoke();
+        }
+    }
 }

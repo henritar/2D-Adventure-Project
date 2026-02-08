@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d913527a614ea344f96f9c206d673891, type: 3}
   m_Name: ManaPotion
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects.ItemData
+  itemId: e0417062-575e-4015-b528-dc1c2b3680ef
   itemName: Mana Potion
   itemDescription: Use this potion to recover some of your mana!
   icon: {fileID: 21300000, guid: 12c9331000bfc4daea4a5a1420a5904d, type: 3}
