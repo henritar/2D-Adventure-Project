@@ -9,12 +9,18 @@ namespace Assets.Scripts.Runtime.Gameplay.Interactables
     {
         [SerializeField]
         private ItemData itemData;
+        [SerializeField] 
+        private Transform interactionAnchor;
+        public string InteractionText => "Hold E to pick up";
         public bool IsBusy => false;
+
+        public Transform InteractionAnchor => interactionAnchor;
 
         public void Interact(PlayerCharacterController player)
         {
             Debug.Log($"Added {itemData.name} to inventory.");
             player.AddItemToInventory(itemData, 1);
+            Destroy(gameObject);
         }
     }
 }

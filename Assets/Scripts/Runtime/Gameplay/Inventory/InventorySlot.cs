@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Inventory
 {
