@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 {
@@ -9,10 +10,14 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
     {
         public InventorySlotUI slotPrefab;
         public Transform gridParent;
+        public Image dragIcon;
+
+        public event Action<int> BeginDrag;
+        public event Action<int> EndDrag;
+        public event Action<int> Drop;
+        public event Action<int> SlotClicked;
 
         private List<InventorySlotUI> slots = new();
-
-        public event Action<int> SlotClicked;
 
         public void Build(int slotCount)
         {
@@ -25,7 +30,12 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
             {
                 var ui = Instantiate(slotPrefab, gridParent);
                 slots.Add(ui);
+                ui.Init(i);
                 ui.Clicked += () => SlotClicked?.Invoke(i);
+                ui.BeginDrag += index => BeginDrag?.Invoke(index);
+                ui.Drag += (index, pointerEvent) => MoveDragIcon(pointerEvent.position);
+                ui.EndDrag += index => EndDrag?.Invoke(index);
+                ui.Drop += index => Drop?.Invoke(index);
             }
         }
 
@@ -37,6 +47,22 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
         public void ClearSlot(int index)
         {
             slots[index].Set(new InventorySlot());
+        }
+
+        public void ShowDragIcon(Sprite icon)
+        {
+            dragIcon.sprite = icon;
+            dragIcon.gameObject.SetActive(true);
+        }
+
+        public void MoveDragIcon(Vector2 position)
+        {
+            dragIcon.transform.position = position;
+        }
+
+        public void HideDragIcon()
+        {
+            dragIcon.gameObject.SetActive(false);
         }
     }
 }

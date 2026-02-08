@@ -1,16 +1,33 @@
 ﻿using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Runtime.Gameplay.Inventory
 {
-    public class InventorySlotUI : MonoBehaviour
+    public class InventorySlotUI : MonoBehaviour, IBeginDragHandler,
+    IDragHandler,
+    IEndDragHandler,
+    IDropHandler
     {
         public Image icon;
         public TMP_Text itemText;
 
         public event Action Clicked;
+
+        public event Action<int> BeginDrag;
+        public event Action<int, PointerEventData> Drag;
+        public event Action<int> EndDrag;
+        public event Action<int> Drop;
+
+        public int Index { get; private set; }
+
+        public void Init(int index)
+        {
+            Index = index;
+        }
 
         public void Set(InventorySlot slot)
         {
@@ -31,6 +48,26 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory
         public void OnClick()
         {
             Clicked?.Invoke();
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            BeginDrag?.Invoke(Index);
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            Drag?.Invoke(Index, eventData);
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            EndDrag?.Invoke(Index);
+        }
+
+        public void OnDrop(PointerEventData eventData)
+        {
+            Drop?.Invoke(Index);
         }
     }
 

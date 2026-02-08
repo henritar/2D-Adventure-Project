@@ -43,6 +43,15 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 
             return false;
         }
+
+        public void Swap(int a, int b)
+        {
+            var temp = _slots[a];
+            _slots[a] = _slots[b];
+            _slots[b] = temp;
+
+            OnChanged?.Invoke();
+        }
     }
 
 }
