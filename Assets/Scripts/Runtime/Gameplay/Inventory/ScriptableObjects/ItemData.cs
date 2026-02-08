@@ -2,24 +2,24 @@
 
 namespace Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects
 {
-    [CreateAssetMenu(menuName = "Inventory/Item")]
+    [CreateAssetMenu(menuName = "Game/Inventory/Item")]
     public class ItemData : ScriptableObject
     {
-        public string itemId;
-        public string itemName;
-        public string itemDescription;
-        public Sprite icon;
-        public bool stackable;
-        public int maxStack = 99;
+        public string ItemId;
+        public string ItemName;
+        public string ItemDescription;
+        public Sprite Icon;
+        public bool Stackable;
+        public int MaxStack = 99;
 
 #if UNITY_EDITOR
         //TODO: This is a simple way to ensure unique IDs,
         //but it may not be ideal for all use cases.
         void OnValidate()
         {
-            if (string.IsNullOrEmpty(itemId))
+            if (string.IsNullOrEmpty(ItemId))
             {
-                itemId = System.Guid.NewGuid().ToString();
+                ItemId = System.Guid.NewGuid().ToString();
                 UnityEditor.EditorUtility.SetDirty(this);
             }
         }

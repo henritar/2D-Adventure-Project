@@ -39,9 +39,9 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory
             else
             {
                 icon.enabled = true;
-                icon.sprite = slot.item.icon;
+                icon.sprite = slot.item.Icon;
                 string quantityString = slot.quantity > 1 ? $" x{slot.quantity.ToString()}" : "";
-                itemText.text = $"{slot.item.itemName}{quantityString}";
+                itemText.text = $"{slot.item.ItemName}{quantityString}";
             }
         }
 

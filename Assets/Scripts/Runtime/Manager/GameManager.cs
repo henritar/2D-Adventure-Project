@@ -41,6 +41,7 @@ namespace Assets.Scripts.Runtime.Manager
 
         void Start()
         {
+            SoundManager.Instance.PlayMusic(SoundsEnum.BackgroundMusic);
             _gameStatesManager.ChangeState(GameStatesEnum.Playing);
         }
 

@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
+﻿using Assets.Scripts.Runtime.Enums;
+using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
+using Assets.Scripts.Runtime.Manager;
 using Assets.Scripts.Runtime.Systems.Save.DTO;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
         {
             foreach (var slot in _slots)
             {
-                if (slot.item == item && item.stackable && slot.quantity < item.maxStack)
+                if (slot.item == item && item.Stackable && slot.quantity < item.MaxStack)
                 {
                     slot.quantity += amount;
                     OnChanged?.Invoke();
@@ -62,7 +64,8 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
             if (slot.IsEmpty)
                 return;
 
-            Debug.Log($"{slot.item.itemName} used!");
+            SoundManager.Instance.PlaySFX(SoundsEnum.UseItem);
+            Debug.Log($"{slot.item.ItemName} used!");
 
             slot.quantity--;
 
@@ -86,7 +89,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
                 {
                     data.slots.Add(new InventorySlotSaveData
                     {
-                        itemId = slot.item.itemId,
+                        itemId = slot.item.ItemId,
                         quantity = slot.quantity
                     });
                 }

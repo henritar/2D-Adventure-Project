@@ -3,23 +3,23 @@ using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects
 {
-    [CreateAssetMenu(menuName = "Inventory/Item Database")]
+    [CreateAssetMenu(menuName = "Game/Inventory/Item Database")]
     public class ItemDatabase : ScriptableObject
     {
-        public List<ItemData> items;
+        public List<ItemData> Items;
 
-        private Dictionary<string, ItemData> lookup;
+        private Dictionary<string, ItemData> _lookup;
 
         void OnEnable()
         {
-            lookup = new Dictionary<string, ItemData>();
-            foreach (var item in items)
-                lookup[item.itemId] = item;
+            _lookup = new Dictionary<string, ItemData>();
+            foreach (var item in Items)
+                _lookup[item.ItemId] = item;
         }
 
         public ItemData GetById(string id)
         {
-            return lookup.TryGetValue(id, out var item) ? item : null;
+            return _lookup.TryGetValue(id, out var item) ? item : null;
         }
     }
 }

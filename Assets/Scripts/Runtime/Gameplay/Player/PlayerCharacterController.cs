@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
+﻿using Assets.Scripts.Runtime.Enums;
+using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
+using Assets.Scripts.Runtime.Manager;
 using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Player
@@ -62,6 +64,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
         {
             if (_isAttacking) return;
 
+            SoundManager.Instance.PlaySFX(SoundsEnum.SwordSwing);
             _animator.SetTrigger("2_Attack");
         }
 
@@ -83,8 +86,14 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
             _isAttacking = false;
         }
 
+        public void OnFootstep()
+        {
+            SoundManager.Instance.PlaySFX(SoundsEnum.Steps);
+        }
+
         public void AddItemToInventory(ItemData item, int quantity)
         {
+            SoundManager.Instance.PlaySFX(SoundsEnum.Pickup);
             _inventory.Model.AddItem(item, quantity);
         }
     }

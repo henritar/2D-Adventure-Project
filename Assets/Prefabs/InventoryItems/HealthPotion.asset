@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d913527a614ea344f96f9c206d673891, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects.ItemData
-  itemId: f7a25e9a-4cf5-4396-97af-bcab066ccd99
-  itemName: Health Potion
-  itemDescription: Use this potion to recover some of your health!
-  icon: {fileID: 21300000, guid: b2777b1da979c40329fb6845b792ac73, type: 3}
-  stackable: 1
-  maxStack: 99
+  ItemId: fe5648d9-2a44-4cce-bcea-fec5a5720e18
+  ItemName: Health Potion
+  ItemDescription: Use this potion to recover your health!
+  Icon: {fileID: 21300000, guid: b2777b1da979c40329fb6845b792ac73, type: 3}
+  Stackable: 1
+  MaxStack: 99

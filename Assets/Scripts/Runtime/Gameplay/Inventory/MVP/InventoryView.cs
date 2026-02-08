@@ -110,8 +110,8 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
                 return;
             }
 
-            ItemName.text = item.itemName;
-            ItemDescription.text = item.itemDescription;
+            ItemName.text = item.ItemName;
+            ItemDescription.text = item.ItemDescription;
             //UseItemButton.gameObject.SetActive(true);
         }
 

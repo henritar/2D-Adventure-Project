@@ -82,7 +82,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
                 return;
 
             draggedIndex = index;
-            view.ShowDragIcon(model.Slots[index].item.icon);
+            view.ShowDragIcon(model.Slots[index].item.Icon);
         }
 
         private void OnEndDrag(int _)
