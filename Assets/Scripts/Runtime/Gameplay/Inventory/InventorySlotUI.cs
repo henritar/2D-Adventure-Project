@@ -8,7 +8,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory
     public class InventorySlotUI : MonoBehaviour
     {
         public Image icon;
-        public TMP_Text quantityText;
+        public TMP_Text itemText;
 
         public event Action Clicked;
 
@@ -17,13 +17,14 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory
             if (slot.IsEmpty)
             {
                 icon.enabled = false;
-                quantityText.text = "";
+                itemText.text = "";
             }
             else
             {
                 icon.enabled = true;
                 icon.sprite = slot.item.icon;
-                quantityText.text = slot.quantity > 1 ? slot.quantity.ToString() : "";
+                string quantityString = slot.quantity > 1 ? $" x{slot.quantity.ToString()}" : "";
+                itemText.text = $"{slot.item.name}{quantityString}";
             }
         }
 

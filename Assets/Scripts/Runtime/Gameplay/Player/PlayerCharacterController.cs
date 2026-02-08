@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Player
