@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Runtime.Shared.Interfaces.Player;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Player
@@ -9,34 +10,62 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
     {
         public IInteractable Current { get; private set; }
 
-        public event Action<IInteractable> InteractableEntered;
-        public event Action InteractableExited;
+        public event Action<IInteractable> InteractableChanged;
+
+        private readonly List<IInteractable> interactablesInRange = new();
+
         void OnTriggerEnter2D(Collider2D other)
         {
-            Current = other.GetComponent<IInteractable>();
+            if (!other.TryGetComponent(out IInteractable interactable))
+                return;
 
-            if (Current != null)
-            {
-                Debug.Log($"Player can interact with {other.gameObject.name}");
-                InteractableEntered?.Invoke(Current);
-            }
+            interactablesInRange.Add(interactable);
+            RecalculateCurrent();
         }
 
         void OnTriggerExit2D(Collider2D other)
         {
-            if (other.GetComponent<IInteractable>() == Current)
-            {
-                Current = null;
-                InteractableExited?.Invoke();
-            }
+            if (!other.TryGetComponent(out IInteractable interactable))
+                return;
+
+            interactablesInRange.Remove(interactable);
+            RecalculateCurrent();
         }
 
-        public bool CanInteract => Current != null && !Current.IsBusy;
+        void RecalculateCurrent()
+        {
+            IInteractable best = null;
+            float bestDistance = float.MaxValue;
+
+            foreach (var interactable in interactablesInRange)
+            {
+                if (interactable.IsBusy)
+                    continue;
+
+                float distance = Vector2.Distance(
+                    transform.position,
+                    interactable.InteractionAnchor.position
+                );
+
+                if (distance < bestDistance)
+                {
+                    best = interactable;
+                    bestDistance = distance;
+                }
+            }
+
+            if (best == Current)
+                return;
+
+            Current = best;
+            InteractableChanged?.Invoke(Current);
+        }
+
+        public bool CanInteract => Current != null;
 
         public void Interact(PlayerCharacterController player)
         {
             Current?.Interact(player);
         }
     }
-
 }

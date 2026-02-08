@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2325933651155147317}
   - component: {fileID: 2259928171268907547}
-  - component: {fileID: 2431724768057796026}
+  - component: {fileID: -4306118222959202230}
   m_Layer: 0
-  m_Name: House
+  m_Name: TextInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2431724768057796026
+--- !u!114 &-4306118222959202230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +120,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4298572422922371483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c7e4fd4553c17841954d676a13a9cbc, type: 3}
+  m_Script: {fileID: 11500000, guid: a3c827761af334941948bb783ae9a446, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Runtime.Gameplay.Interactables.HouseInteractable
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Runtime.Gameplay.Interactables.TextInteractable
   interactionAnchor: {fileID: 4132152942003517924}
+  TextToDisplay: 

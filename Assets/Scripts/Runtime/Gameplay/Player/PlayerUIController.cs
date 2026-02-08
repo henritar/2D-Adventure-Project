@@ -1,7 +1,4 @@
 ﻿using Assets.Scripts.Runtime.Gameplay.Interactables;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Player
@@ -13,17 +10,12 @@ namespace Assets.Scripts.Runtime.Gameplay.Player
 
         void Awake()
         {
-            interactor.InteractableEntered += interactable =>
+            interactor.InteractableChanged += interactable =>
             {
-                if (!interactable.IsBusy)
-                {
+                if (interactable != null)
                     prompt.Show(interactable);
-                }
-            };
-
-            interactor.InteractableExited += () =>
-            {
-                prompt.Hide();
+                else
+                    prompt.Hide();
             };
         }
     }
