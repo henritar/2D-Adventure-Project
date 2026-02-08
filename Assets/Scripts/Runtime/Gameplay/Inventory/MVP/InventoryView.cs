@@ -17,12 +17,14 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
         public TMP_Text ItemName;
         public TMP_Text ItemDescription;
         public Button ExitButton;
+        public Button UseButton;
 
         public event Action<int> BeginDrag;
         public event Action<int> EndDrag;
         public event Action<int> Drop;
         public event Action<int> SlotClicked;
         public event Action ExitButtonClicked;
+        public event Action UseButtonClicked;
 
         private List<InventorySlotUI> slots = new();
 
@@ -50,9 +52,10 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
             }
 
             ExitButton.onClick.AddListener(() => ExitButtonClicked?.Invoke());
+            UseButton.onClick.AddListener(() => UseButtonClicked?.Invoke());
 
             DragIcon.gameObject.SetActive(false);
-            ClearItemDetails();
+            ClearHighlight();
         }
 
         public void SetSlot(int index, InventorySlot slot)
@@ -85,6 +88,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
         {
             ClearHighlight();
             slots[index].SetHighlighted(true);
+            UseButton.gameObject.SetActive(true);
             highlightedIndex = index;
         }
 
@@ -93,6 +97,8 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
             if (highlightedIndex != -1)
                 slots[highlightedIndex].SetHighlighted(false);
 
+            ClearItemDetails();
+            UseButton.gameObject.SetActive(false);
             highlightedIndex = -1;
         }
 

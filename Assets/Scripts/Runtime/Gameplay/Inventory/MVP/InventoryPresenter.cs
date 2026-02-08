@@ -20,6 +20,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
             view.BeginDrag += OnBeginDrag;
             view.EndDrag += OnEndDrag;
             view.Drop += OnDrop;
+            view.UseButtonClicked += OnUseButtonClicked;
             model.OnChanged += Refresh;
             Refresh();
         }
@@ -51,12 +52,12 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
                 return;
             }
 
-            if (selectedIndex == index)
-            {
-                model.UseItem(index);
-                ClearSelection();
-                return;
-            }
+            // Double click to use item
+            //if (selectedIndex == index)
+            //{
+            //    OnUseButtonClicked();
+            //    return;
+            //}
 
             Select(index);
         }
@@ -97,6 +98,15 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
                 return;
 
             model.Swap(draggedIndex, targetIndex);
+        }
+
+        private void OnUseButtonClicked()
+        {
+            if (selectedIndex != -1)
+            {
+                model.UseItem(selectedIndex);
+                ClearSelection();
+            }
         }
     }
 }

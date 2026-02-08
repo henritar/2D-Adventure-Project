@@ -12,6 +12,7 @@ namespace Assets.Scripts.Runtime.Shared.Interfaces.Inventory
         event Action<int> EndDrag;
         event Action<int> Drop;
         public event Action ExitButtonClicked;
+        public event Action UseButtonClicked;
 
         void ShowDragIcon(Sprite icon);
         void MoveDragIcon(Vector2 position);
