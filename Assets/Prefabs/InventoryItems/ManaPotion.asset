@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d913527a614ea344f96f9c206d673891, type: 3}
-  m_Name: HealthPotion
+  m_Name: ManaPotion
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects.ItemData
-  itemName: Health Potion
-  itemDescription: Use this potion to recover some of your health!
-  icon: {fileID: 21300000, guid: b2777b1da979c40329fb6845b792ac73, type: 3}
+  itemName: Mana Potion
+  itemDescription: Use this potion to recover some of your mana!
+  icon: {fileID: 21300000, guid: 12c9331000bfc4daea4a5a1420a5904d, type: 3}
   stackable: 1
   maxStack: 99

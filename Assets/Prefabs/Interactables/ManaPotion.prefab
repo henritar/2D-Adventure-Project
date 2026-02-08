@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1386258486312560992, guid: f493c2d5dd5a841479cd1c5117bb6cc5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b2777b1da979c40329fb6845b792ac73, type: 3}
+      objectReference: {fileID: 21300000, guid: 12c9331000bfc4daea4a5a1420a5904d, type: 3}
     - target: {fileID: 1386258486312560992, guid: f493c2d5dd5a841479cd1c5117bb6cc5, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: 1838471300241453830, guid: f493c2d5dd5a841479cd1c5117bb6cc5, type: 3}
       propertyPath: itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 6696f1b586982dd4f8ec465fbff7763c, type: 2}
+      objectReference: {fileID: 11400000, guid: 3a6bf8d6539a715439ed413ce7b193b0, type: 2}
     - target: {fileID: 2701069964756650851, guid: f493c2d5dd5a841479cd1c5117bb6cc5, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8457687334334896690, guid: f493c2d5dd5a841479cd1c5117bb6cc5, type: 3}
       propertyPath: m_Name
-      value: HealthPotion
+      value: ManaPotion
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

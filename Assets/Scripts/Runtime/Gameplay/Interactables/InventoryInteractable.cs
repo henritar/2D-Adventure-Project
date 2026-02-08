@@ -13,6 +13,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Interactables
 
         public void Interact(PlayerCharacterController player)
         {
+            Debug.Log($"Added {itemData.name} to inventory.");
             player.AddItemToInventory(itemData, 1);
         }
     }

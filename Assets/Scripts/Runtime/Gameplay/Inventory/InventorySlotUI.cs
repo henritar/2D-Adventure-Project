@@ -42,7 +42,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory
                 icon.enabled = true;
                 icon.sprite = slot.item.icon;
                 string quantityString = slot.quantity > 1 ? $" x{slot.quantity.ToString()}" : "";
-                itemText.text = $"{slot.item.name}{quantityString}";
+                itemText.text = $"{slot.item.itemName}{quantityString}";
             }
         }
 
