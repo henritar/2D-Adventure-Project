@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Runtime.Enums;
 using Assets.Scripts.Runtime.Gameplay.Inventory.MVP;
 using Assets.Scripts.Runtime.Shared;
-using Unity.VisualScripting;
+using Assets.Scripts.Runtime.Shared.Interfaces.Inventory;
 using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Manager.States.MainGame
@@ -44,12 +44,19 @@ namespace Assets.Scripts.Runtime.Manager.States.MainGame
         {
             _playerCharacterInputManager.ToggleUIInputManager(true);
             _playerCharacterInputManager.InventoryPressedAction += OnCancelPressed;
+            _inventoryView.ExitButtonClicked += OnExitButtonPressed;
         }
 
         void OnDisable()
         {
+            _inventoryView.ExitButtonClicked -= OnExitButtonPressed;
             _playerCharacterInputManager.InventoryPressedAction -= OnCancelPressed;
             _playerCharacterInputManager.ToggleUIInputManager(false);
+        }
+
+        void OnExitButtonPressed()
+        {
+            OnCancelPressed(true);
         }
 
         void OnCancelPressed(bool isPressed)

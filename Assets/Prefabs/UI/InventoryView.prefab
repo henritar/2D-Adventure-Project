@@ -258,7 +258,7 @@ MonoBehaviour:
   DragIcon: {fileID: 1895824867506340980}
   ItemName: {fileID: 3837210677838729790}
   ItemDescription: {fileID: 3440131194476735582}
-  ConfirmButton: {fileID: 4976021379029532515}
+  ExitButton: {fileID: 4976021379029532515}
 --- !u!1 &2280066471822778525
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Confirm
+  m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

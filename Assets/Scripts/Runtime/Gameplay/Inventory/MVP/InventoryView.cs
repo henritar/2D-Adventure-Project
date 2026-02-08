@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Runtime.Shared.Interfaces.Inventory;
+﻿using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
+using Assets.Scripts.Runtime.Shared.Interfaces.Inventory;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -15,12 +16,13 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 
         public TMP_Text ItemName;
         public TMP_Text ItemDescription;
-        public Button ConfirmButton;
+        public Button ExitButton;
 
         public event Action<int> BeginDrag;
         public event Action<int> EndDrag;
         public event Action<int> Drop;
         public event Action<int> SlotClicked;
+        public event Action ExitButtonClicked;
 
         private List<InventorySlotUI> slots = new();
 
@@ -47,7 +49,10 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
                 ui.Drop += index => Drop?.Invoke(index);
             }
 
+            ExitButton.onClick.AddListener(() => ExitButtonClicked?.Invoke());
+
             DragIcon.gameObject.SetActive(false);
+            ClearItemDetails();
         }
 
         public void SetSlot(int index, InventorySlot slot)
@@ -89,6 +94,26 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
                 slots[highlightedIndex].SetHighlighted(false);
 
             highlightedIndex = -1;
+        }
+
+        public void ShowItemDetails(ItemData item)
+        {
+            if (item == null)
+            {
+                ClearItemDetails();
+                return;
+            }
+
+            ItemName.text = item.itemName;
+            ItemDescription.text = item.itemDescription;
+            //UseItemButton.gameObject.SetActive(true);
+        }
+
+        public void ClearItemDetails()
+        {
+            ItemName.text = "";
+            ItemDescription.text = "";
+            //UseItemButton.gameObject.SetActive(false);
         }
     }
 }

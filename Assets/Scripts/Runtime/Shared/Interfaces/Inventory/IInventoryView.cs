@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Runtime.Gameplay.Inventory;
+using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
 using System;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Runtime.Shared.Interfaces.Inventory
         event Action<int> BeginDrag;
         event Action<int> EndDrag;
         event Action<int> Drop;
+        public event Action ExitButtonClicked;
 
         void ShowDragIcon(Sprite icon);
         void MoveDragIcon(Vector2 position);
@@ -19,5 +21,7 @@ namespace Assets.Scripts.Runtime.Shared.Interfaces.Inventory
         void ClearSlot(int index);
         void HighlightSlot(int index);
         void ClearHighlight();
+        public void ShowItemDetails(ItemData item);
+        public void ClearItemDetails();
     }
 }

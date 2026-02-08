@@ -6,6 +6,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects
     public class ItemData : ScriptableObject
     {
         public string itemName;
+        public string itemDescription;
         public Sprite icon;
         public bool stackable;
         public int maxStack = 99;

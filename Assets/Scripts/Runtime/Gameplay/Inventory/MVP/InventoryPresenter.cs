@@ -65,11 +65,13 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
         {
             selectedIndex = index;
             view.HighlightSlot(index);
+            view.ShowItemDetails(model.Slots[selectedIndex].item);
         }
 
         private void ClearSelection()
         {
             view.ClearHighlight();
+            view.ClearItemDetails();
             selectedIndex = -1;
         }
 
