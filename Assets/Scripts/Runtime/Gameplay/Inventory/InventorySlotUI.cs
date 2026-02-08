@@ -10,13 +10,14 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory
     public class InventorySlotUI : MonoBehaviour, IBeginDragHandler,
     IDragHandler,
     IEndDragHandler,
-    IDropHandler
+    IDropHandler,
+    IPointerClickHandler
     {
         public Image icon;
         public TMP_Text itemText;
+        public Image highlightBorder;
 
-        public event Action Clicked;
-
+        public event Action<int> Clicked;
         public event Action<int> BeginDrag;
         public event Action<int, PointerEventData> Drag;
         public event Action<int> EndDrag;
@@ -45,9 +46,9 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory
             }
         }
 
-        public void OnClick()
+        public void SetHighlighted(bool value)
         {
-            Clicked?.Invoke();
+            highlightBorder.enabled = value;
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -68,6 +69,14 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory
         public void OnDrop(PointerEventData eventData)
         {
             Drop?.Invoke(Index);
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button != PointerEventData.InputButton.Left)
+                return;
+
+            Clicked?.Invoke(Index);
         }
     }
 

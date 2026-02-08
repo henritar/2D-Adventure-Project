@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Runtime.Gameplay.Inventory.ScriptableObjects;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 {
@@ -49,6 +50,23 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
             var temp = _slots[a];
             _slots[a] = _slots[b];
             _slots[b] = temp;
+
+            OnChanged?.Invoke();
+        }
+
+        public void UseItem(int index)
+        {
+            var slot = _slots[index];
+
+            if (slot.IsEmpty)
+                return;
+
+            Debug.Log($"{slot.item.itemName} used!");
+
+            slot.quantity--;
+
+            if (slot.quantity <= 0)
+                slot.Clear();
 
             OnChanged?.Invoke();
         }

@@ -19,6 +19,8 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 
         private List<InventorySlotUI> slots = new();
 
+        private int highlightedIndex = -1;
+
         public void Build(int slotCount)
         {
             foreach (Transform child in gridParent)
@@ -31,7 +33,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
                 var ui = Instantiate(slotPrefab, gridParent);
                 slots.Add(ui);
                 ui.Init(i);
-                ui.Clicked += () => SlotClicked?.Invoke(i);
+                ui.Clicked += (index) => SlotClicked?.Invoke(index);
                 ui.BeginDrag += index => BeginDrag?.Invoke(index);
                 ui.Drag += (index, pointerEvent) => MoveDragIcon(pointerEvent.position);
                 ui.EndDrag += index => EndDrag?.Invoke(index);
@@ -63,6 +65,21 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
         public void HideDragIcon()
         {
             dragIcon.gameObject.SetActive(false);
+        }
+
+        public void HighlightSlot(int index)
+        {
+            ClearHighlight();
+            slots[index].SetHighlighted(true);
+            highlightedIndex = index;
+        }
+
+        public void ClearHighlight()
+        {
+            if (highlightedIndex != -1)
+                slots[highlightedIndex].SetHighlighted(false);
+
+            highlightedIndex = -1;
         }
     }
 }

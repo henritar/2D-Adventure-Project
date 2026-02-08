@@ -1,6 +1,4 @@
 ﻿using Assets.Scripts.Runtime.Shared.Interfaces.Inventory;
-using Unity.VisualScripting;
-using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 {
@@ -10,6 +8,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
         private readonly IInventoryView view;
 
         private int draggedIndex = -1;
+        private int selectedIndex = -1;
 
         public InventoryPresenter(InventoryModel model, IInventoryView view)
         {
@@ -40,8 +39,38 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 
         private void OnSlotClicked(int index)
         {
-            //model.UseItem(index);
-            Debug.Log($"Clicked slot {index}");
+            if (model.Slots[index].IsEmpty)
+            {
+                ClearSelection();
+                return;
+            }
+
+            if (selectedIndex == -1)
+            {
+                Select(index);
+                return;
+            }
+
+            if (selectedIndex == index)
+            {
+                model.UseItem(index);
+                ClearSelection();
+                return;
+            }
+
+            Select(index);
+        }
+
+        private void Select(int index)
+        {
+            selectedIndex = index;
+            view.HighlightSlot(index);
+        }
+
+        private void ClearSelection()
+        {
+            view.ClearHighlight();
+            selectedIndex = -1;
         }
 
         private void OnBeginDrag(int index)
@@ -55,6 +84,7 @@ namespace Assets.Scripts.Runtime.Gameplay.Inventory.MVP
 
         private void OnEndDrag(int _)
         {
+            ClearSelection();
             draggedIndex = -1;
             view.HideDragIcon();
         }

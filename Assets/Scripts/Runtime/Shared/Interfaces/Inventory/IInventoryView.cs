@@ -17,5 +17,7 @@ namespace Assets.Scripts.Runtime.Shared.Interfaces.Inventory
         void Build(int slotCount);
         void SetSlot(int index, InventorySlot slot);
         void ClearSlot(int index);
+        void HighlightSlot(int index);
+        void ClearHighlight();
     }
 }
